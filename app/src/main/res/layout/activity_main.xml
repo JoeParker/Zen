@@ -7,48 +7,100 @@
     android:background="@color/colorPrimary"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:id="@+id/android"
-        android:layout_width="112dp"
-        android:layout_height="140dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintBottom_toTopOf="@+id/animate"
+    <Button
+        android:id="@+id/spring_birds"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/spring_birds_g"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
     <Button
-        android:id="@+id/animate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="@string/animate"
-        android:background="@color/colorAccent"
+        android:id="@+id/babbling_brook"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/babbling_brook_g"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/spring_birds"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="261dp"
-        android:layout_height="70dp"
-        android:text="Test environment project Doormouse"
-        android:textAlignment="center"
-        android:textColor="@color/colorAccent"
-        android:textSize="24dp"
+    <Button
+        android:id="@+id/thunder"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/thunder_g"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.024" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/babbling_brook"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/mockingbird"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/mockingbird_g"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/thunder"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/rain"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/rain_g"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/mockingbird"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/dog"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/dog_g"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rain"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/beach"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/beach_g"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dog"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/rowing"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/rowing_g"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/beach"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
