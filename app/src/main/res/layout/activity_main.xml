@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -92,6 +97,18 @@
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
+        android:id="@+id/savannah"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/savannah_g"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/beach"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
         android:id="@+id/rowing"
         android:layout_width="match_parent"
         android:layout_height="90dp"
@@ -100,7 +117,44 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/beach"
+        app:layout_constraintTop_toBottomOf="@+id/savannah"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/traffic"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/traffic_g"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rowing"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/rain_umbrella"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/rain_umbrella_g"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/traffic"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/night"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/night_g"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rain_umbrella"
         app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

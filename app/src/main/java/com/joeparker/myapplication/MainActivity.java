@@ -19,9 +19,12 @@ public class MainActivity extends AppCompatActivity {
     private Button button5;
     private Button button6;
     private Button button7;
-
+    private Button button8;
     private Button button9;
-
+    private Button button10;
+    private Button button11;
+    private Button button12;
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -146,6 +149,23 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        button8 = (Button)findViewById(R.id.savannah);
+        final MediaPlayer player8 = MediaPlayer.create(this, R.raw.savannah);
+        button8.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (player8.isPlaying()) {
+                    player8.pause();
+                    button8.setBackground(getResources().getDrawable(R.drawable.savannah_g));
+                }
+                else {
+                    player8.start();
+                    player8.setLooping(true);
+                    button8.setBackground(getResources().getDrawable(R.drawable.savannah));
+                }
+            }
+        });
+
         button9 = (Button)findViewById(R.id.rowing);
         final MediaPlayer player9 = MediaPlayer.create(this, R.raw.rowing);
         button9.setOnClickListener(new View.OnClickListener() {
@@ -159,6 +179,57 @@ public class MainActivity extends AppCompatActivity {
                     player9.start();
                     player9.setLooping(true);
                     button9.setBackground(getResources().getDrawable(R.drawable.rowing));
+                }
+            }
+        });
+
+        button10 = (Button)findViewById(R.id.traffic);
+        final MediaPlayer player10 = MediaPlayer.create(this, R.raw.traffic);
+        button10.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (player10.isPlaying()) {
+                    player10.pause();
+                    button10.setBackground(getResources().getDrawable(R.drawable.traffic_g));
+                }
+                else {
+                    player10.start();
+                    player10.setLooping(true);
+                    button10.setBackground(getResources().getDrawable(R.drawable.traffic));
+                }
+            }
+        });
+
+        button11 = (Button)findViewById(R.id.rain_umbrella);
+        final MediaPlayer player11 = MediaPlayer.create(this, R.raw.rain_umbrella);
+        button11.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (player11.isPlaying()) {
+                    player11.pause();
+                    button11.setBackground(getResources().getDrawable(R.drawable.rain_umbrella_g));
+                }
+                else {
+                    player11.start();
+                    player11.setLooping(true);
+                    button11.setBackground(getResources().getDrawable(R.drawable.rain_umbrella));
+                }
+            }
+        });
+
+        button12 = (Button)findViewById(R.id.night);
+        final MediaPlayer player12 = MediaPlayer.create(this, R.raw.night);
+        button12.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (player12.isPlaying()) {
+                    player12.pause();
+                    button12.setBackground(getResources().getDrawable(R.drawable.night_g));
+                }
+                else {
+                    player12.start();
+                    player12.setLooping(true);
+                    button12.setBackground(getResources().getDrawable(R.drawable.night));
                 }
             }
         });
