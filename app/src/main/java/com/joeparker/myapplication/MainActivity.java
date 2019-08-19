@@ -2,13 +2,10 @@ package com.joeparker.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.graphics.Color;
-import android.graphics.drawable.AnimationDrawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,13 +21,13 @@ public class MainActivity extends AppCompatActivity {
     private Button button10;
     private Button button11;
     private Button button12;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button1 = (Button)findViewById(R.id.spring_birds);
+        button1 = findViewById(R.id.spring_birds);
         final MediaPlayer player1 = MediaPlayer.create(this, R.raw.spring_birds);
         button1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button2 = (Button)findViewById(R.id.babbling_brook);
+        button2 = findViewById(R.id.babbling_brook);
         final MediaPlayer player2 = MediaPlayer.create(this, R.raw.babbling_brook);
         button2.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,7 +61,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button3 = (Button)findViewById(R.id.thunder);
+        button3 = findViewById(R.id.thunder);
         final MediaPlayer player3 = MediaPlayer.create(this, R.raw.thunder);
         button3.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -81,7 +78,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button4 = (Button)findViewById(R.id.mockingbird);
+        button4 = findViewById(R.id.mockingbird);
         final MediaPlayer player4 = MediaPlayer.create(this, R.raw.mockingbird);
         button4.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -98,7 +95,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button5 = (Button)findViewById(R.id.rain);
+        button5 = findViewById(R.id.rain);
         final MediaPlayer player5 = MediaPlayer.create(this, R.raw.rain);
         button5.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -115,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button6 = (Button)findViewById(R.id.dog);
+        button6 = findViewById(R.id.dog);
         final MediaPlayer player6 = MediaPlayer.create(this, R.raw.dog);
         button6.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -132,7 +129,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button7 = (Button)findViewById(R.id.beach);
+        button7 = findViewById(R.id.beach);
         final MediaPlayer player7 = MediaPlayer.create(this, R.raw.beach);
         button7.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -149,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button8 = (Button)findViewById(R.id.savannah);
+        button8 = findViewById(R.id.savannah);
         final MediaPlayer player8 = MediaPlayer.create(this, R.raw.savannah);
         button8.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -166,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button9 = (Button)findViewById(R.id.rowing);
+        button9 = findViewById(R.id.rowing);
         final MediaPlayer player9 = MediaPlayer.create(this, R.raw.rowing);
         button9.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -183,7 +180,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button10 = (Button)findViewById(R.id.traffic);
+        button10 = findViewById(R.id.traffic);
         final MediaPlayer player10 = MediaPlayer.create(this, R.raw.traffic);
         button10.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -200,7 +197,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button11 = (Button)findViewById(R.id.rain_umbrella);
+        button11 = findViewById(R.id.rain_umbrella);
         final MediaPlayer player11 = MediaPlayer.create(this, R.raw.rain_umbrella);
         button11.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,7 +214,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        button12 = (Button)findViewById(R.id.night);
+        button12 = findViewById(R.id.night);
         final MediaPlayer player12 = MediaPlayer.create(this, R.raw.night);
         button12.setOnClickListener(new View.OnClickListener() {
             @Override
