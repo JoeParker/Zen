@@ -7,229 +7,89 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class MainActivity extends AppCompatActivity {
 
-    private Button button1;
-    private Button button2;
-    private Button button3;
-    private Button button4;
-    private Button button5;
-    private Button button6;
-    private Button button7;
-    private Button button8;
-    private Button button9;
-    private Button button10;
-    private Button button11;
-    private Button button12;
+    final Map<Button, SoundButton> soundMap = new HashMap<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        button1 = findViewById(R.id.spring_birds);
-        final MediaPlayer player1 = MediaPlayer.create(this, R.raw.spring_birds);
-        button1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (player1.isPlaying()) {
-                    player1.pause();
-                    button1.setBackground(getResources().getDrawable(R.drawable.spring_birds_g));
-                }
-                else {
-                    player1.start();
-                    player1.setLooping(true);
-                    button1.setBackground(getResources().getDrawable(R.drawable.spring_birds));
-                }
-            }
-        });
+        //Add sounds here
+        soundMap.put((Button)findViewById(R.id.spring_birds), new SoundButton(
+                MediaPlayer.create(this, R.raw.spring_birds),
+                getResources().getDrawable(R.drawable.spring_birds_g),
+                getResources().getDrawable(R.drawable.spring_birds)));
+        soundMap.put((Button)findViewById(R.id.babbling_brook), new SoundButton(
+                MediaPlayer.create(this, R.raw.babbling_brook),
+                getResources().getDrawable(R.drawable.babbling_brook_g),
+                getResources().getDrawable(R.drawable.babbling_brook)));
+        soundMap.put((Button)findViewById(R.id.thunder), new SoundButton(
+                MediaPlayer.create(this, R.raw.thunder),
+                getResources().getDrawable(R.drawable.thunder_g),
+                getResources().getDrawable(R.drawable.thunder)));
+        soundMap.put((Button)findViewById(R.id.mockingbird), new SoundButton(
+                MediaPlayer.create(this, R.raw.mockingbird),
+                getResources().getDrawable(R.drawable.mockingbird_g),
+                getResources().getDrawable(R.drawable.mockingbird)));
+        soundMap.put((Button)findViewById(R.id.rain), new SoundButton(
+                MediaPlayer.create(this, R.raw.rain),
+                getResources().getDrawable(R.drawable.rain_g),
+                getResources().getDrawable(R.drawable.rain)));
+        soundMap.put((Button)findViewById(R.id.dog), new SoundButton(
+                MediaPlayer.create(this, R.raw.dog),
+                getResources().getDrawable(R.drawable.dog_g),
+                getResources().getDrawable(R.drawable.dog)));
+        soundMap.put((Button)findViewById(R.id.beach), new SoundButton(
+                MediaPlayer.create(this, R.raw.beach),
+                getResources().getDrawable(R.drawable.beach_g),
+                getResources().getDrawable(R.drawable.beach)));
+        soundMap.put((Button)findViewById(R.id.savannah), new SoundButton(
+                MediaPlayer.create(this, R.raw.savannah),
+                getResources().getDrawable(R.drawable.savannah_g),
+                getResources().getDrawable(R.drawable.savannah)));
+        soundMap.put((Button)findViewById(R.id.rowing), new SoundButton(
+                MediaPlayer.create(this, R.raw.rowing),
+                getResources().getDrawable(R.drawable.rowing_g),
+                getResources().getDrawable(R.drawable.rowing)));
+        soundMap.put((Button)findViewById(R.id.traffic), new SoundButton(
+                MediaPlayer.create(this, R.raw.traffic),
+                getResources().getDrawable(R.drawable.traffic_g),
+                getResources().getDrawable(R.drawable.traffic)));
+        soundMap.put((Button)findViewById(R.id.rain_umbrella), new SoundButton(
+                MediaPlayer.create(this, R.raw.rain_umbrella),
+                getResources().getDrawable(R.drawable.rain_umbrella_g),
+                getResources().getDrawable(R.drawable.rain_umbrella)));
+        soundMap.put((Button)findViewById(R.id.night), new SoundButton(
+                MediaPlayer.create(this, R.raw.night),
+                getResources().getDrawable(R.drawable.night_g),
+                getResources().getDrawable(R.drawable.night)));
 
-        button2 = findViewById(R.id.babbling_brook);
-        final MediaPlayer player2 = MediaPlayer.create(this, R.raw.babbling_brook);
-        button2.setOnClickListener(new View.OnClickListener() {
+        View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (player2.isPlaying()) {
-                    player2.pause();
-                    button2.setBackground(getResources().getDrawable(R.drawable.babbling_brook_g));
+                SoundButton sound = soundMap.get(view); //get the sound clicked
+                MediaPlayer player = sound.getPlayer();
+                //Toggle sound on/off
+                if (player.isPlaying()) {
+                    player.pause();
+                    view.setBackground(sound.getImageOff());
                 }
                 else {
-                    player2.start();
-                    player2.setLooping(true);
-                    button2.setBackground(getResources().getDrawable(R.drawable.babbling_brook));
+                    player.start();
+                    player.setLooping(true);
+                    view.setBackground(sound.getImageOn());
                 }
             }
-        });
+        };
 
-        button3 = findViewById(R.id.thunder);
-        final MediaPlayer player3 = MediaPlayer.create(this, R.raw.thunder);
-        button3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (player3.isPlaying()) {
-                    player3.pause();
-                    button3.setBackground(getResources().getDrawable(R.drawable.thunder_g));
-                }
-                else {
-                    player3.start();
-                    player3.setLooping(true);
-                    button3.setBackground(getResources().getDrawable(R.drawable.thunder));
-                }
-            }
-        });
-
-        button4 = findViewById(R.id.mockingbird);
-        final MediaPlayer player4 = MediaPlayer.create(this, R.raw.mockingbird);
-        button4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (player4.isPlaying()) {
-                    player4.pause();
-                    button4.setBackground(getResources().getDrawable(R.drawable.mockingbird_g));
-                }
-                else {
-                    player4.start();
-                    player4.setLooping(true);
-                    button4.setBackground(getResources().getDrawable(R.drawable.mockingbird));
-                }
-            }
-        });
-
-        button5 = findViewById(R.id.rain);
-        final MediaPlayer player5 = MediaPlayer.create(this, R.raw.rain);
-        button5.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (player5.isPlaying()) {
-                    player5.pause();
-                    button5.setBackground(getResources().getDrawable(R.drawable.rain_g));
-                }
-                else {
-                    player5.start();
-                    player5.setLooping(true);
-                    button5.setBackground(getResources().getDrawable(R.drawable.rain));
-                }
-            }
-        });
-
-        button6 = findViewById(R.id.dog);
-        final MediaPlayer player6 = MediaPlayer.create(this, R.raw.dog);
-        button6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (player6.isPlaying()) {
-                    player6.pause();
-                    button6.setBackground(getResources().getDrawable(R.drawable.dog_g));
-                }
-                else {
-                    player6.start();
-                    player6.setLooping(true);
-                    button6.setBackground(getResources().getDrawable(R.drawable.dog));
-                }
-            }
-        });
-
-        button7 = findViewById(R.id.beach);
-        final MediaPlayer player7 = MediaPlayer.create(this, R.raw.beach);
-        button7.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (player7.isPlaying()) {
-                    player7.pause();
-                    button7.setBackground(getResources().getDrawable(R.drawable.beach_g));
-                }
-                else {
-                    player7.start();
-                    player7.setLooping(true);
-                    button7.setBackground(getResources().getDrawable(R.drawable.beach));
-                }
-            }
-        });
-
-        button8 = findViewById(R.id.savannah);
-        final MediaPlayer player8 = MediaPlayer.create(this, R.raw.savannah);
-        button8.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (player8.isPlaying()) {
-                    player8.pause();
-                    button8.setBackground(getResources().getDrawable(R.drawable.savannah_g));
-                }
-                else {
-                    player8.start();
-                    player8.setLooping(true);
-                    button8.setBackground(getResources().getDrawable(R.drawable.savannah));
-                }
-            }
-        });
-
-        button9 = findViewById(R.id.rowing);
-        final MediaPlayer player9 = MediaPlayer.create(this, R.raw.rowing);
-        button9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (player9.isPlaying()) {
-                    player9.pause();
-                    button9.setBackground(getResources().getDrawable(R.drawable.rowing_g));
-                }
-                else {
-                    player9.start();
-                    player9.setLooping(true);
-                    button9.setBackground(getResources().getDrawable(R.drawable.rowing));
-                }
-            }
-        });
-
-        button10 = findViewById(R.id.traffic);
-        final MediaPlayer player10 = MediaPlayer.create(this, R.raw.traffic);
-        button10.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (player10.isPlaying()) {
-                    player10.pause();
-                    button10.setBackground(getResources().getDrawable(R.drawable.traffic_g));
-                }
-                else {
-                    player10.start();
-                    player10.setLooping(true);
-                    button10.setBackground(getResources().getDrawable(R.drawable.traffic));
-                }
-            }
-        });
-
-        button11 = findViewById(R.id.rain_umbrella);
-        final MediaPlayer player11 = MediaPlayer.create(this, R.raw.rain_umbrella);
-        button11.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (player11.isPlaying()) {
-                    player11.pause();
-                    button11.setBackground(getResources().getDrawable(R.drawable.rain_umbrella_g));
-                }
-                else {
-                    player11.start();
-                    player11.setLooping(true);
-                    button11.setBackground(getResources().getDrawable(R.drawable.rain_umbrella));
-                }
-            }
-        });
-
-        button12 = findViewById(R.id.night);
-        final MediaPlayer player12 = MediaPlayer.create(this, R.raw.night);
-        button12.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                if (player12.isPlaying()) {
-                    player12.pause();
-                    button12.setBackground(getResources().getDrawable(R.drawable.night_g));
-                }
-                else {
-                    player12.start();
-                    player12.setLooping(true);
-                    button12.setBackground(getResources().getDrawable(R.drawable.night));
-                }
-            }
-        });
+        for(Button b : soundMap.keySet()) {
+            b.setOnClickListener(listener);
+        }
 
     }
 }
