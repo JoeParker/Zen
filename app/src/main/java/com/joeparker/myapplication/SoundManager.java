@@ -6,9 +6,7 @@ import android.media.AudioManager;
 import android.media.SoundPool;
 import android.os.Build;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 public class SoundManager extends Activity {
@@ -21,7 +19,6 @@ public class SoundManager extends Activity {
     public SoundManager(int maxStreams, int[] rawSounds, Context context) {
         this.maxStreams = maxStreams;
         this.sounds = new int[rawSounds.length];
-      //  this.isPlaying = new boolean[rawSounds.length];
 
         //Use either factory or constructor depending on SDK version
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {

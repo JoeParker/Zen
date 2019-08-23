@@ -83,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 SoundButton soundButton = soundMap.get(view); //get the sound button clicked
-                int index = -1;
+                int index = -1; //Error value
                 for (int i = 0; i < rawSounds.length; i++) { //get sound index
                     if (rawSounds[i] == soundButton.getRawSound()) {
                         index = i;
