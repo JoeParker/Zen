@@ -1,28 +1,27 @@
 package com.joeparker.myapplication;
 
 import android.graphics.drawable.Drawable;
-import android.media.MediaPlayer;
 
 import java.util.Objects;
 
 public class SoundButton {
 
-    private MediaPlayer player;
+    private int rawSound;
     private Drawable imageOff;
     private Drawable imageOn;
 
-    public SoundButton(MediaPlayer player, Drawable imageOff, Drawable imageOn) {
-        setPlayer(player);
+    public SoundButton(int rawSound, Drawable imageOff, Drawable imageOn) {
+        setRawSound(rawSound);
         setImageOff(imageOff);
         setImageOn(imageOn);
     }
 
-    public MediaPlayer getPlayer() {
-        return player;
+    public int getRawSound() {
+        return rawSound;
     }
 
-    public void setPlayer(MediaPlayer player) {
-        this.player = player;
+    public void setRawSound(int sound) {
+        this.rawSound = sound;
     }
 
     public Drawable getImageOff() {
@@ -46,13 +45,13 @@ public class SoundButton {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         SoundButton that = (SoundButton) o;
-        return Objects.equals(getPlayer(), that.getPlayer()) &&
+        return Objects.equals(getRawSound(), that.getRawSound()) &&
                 Objects.equals(getImageOff(), that.getImageOff()) &&
                 Objects.equals(getImageOn(), that.getImageOn());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getPlayer(), getImageOff(), getImageOn());
+        return Objects.hash(getRawSound(), getImageOff(), getImageOn());
     }
 }
