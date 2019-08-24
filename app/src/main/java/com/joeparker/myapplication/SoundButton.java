@@ -1,6 +1,8 @@
 package com.joeparker.myapplication;
 
+import android.content.Context;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
 
 import java.util.Objects;
 
@@ -9,11 +11,13 @@ public class SoundButton {
     private int rawSound;
     private Drawable imageOff;
     private Drawable imageOn;
+    private MediaPlayer player;
 
-    public SoundButton(int rawSound, Drawable imageOff, Drawable imageOn) {
+    public SoundButton(Context context, int rawSound, Drawable imageOff, Drawable imageOn) {
         setRawSound(rawSound);
         setImageOff(imageOff);
         setImageOn(imageOn);
+        setPlayer(MediaPlayer.create(context, rawSound));
     }
 
     public int getRawSound() {
@@ -38,6 +42,14 @@ public class SoundButton {
 
     public void setImageOn(Drawable imageOn) {
         this.imageOn = imageOn;
+    }
+
+    public MediaPlayer getPlayer() {
+        return player;
+    }
+
+    public void setPlayer(MediaPlayer player) {
+        this.player = player;
     }
 
     @Override

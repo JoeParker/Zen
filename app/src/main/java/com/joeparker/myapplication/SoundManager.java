@@ -9,6 +9,12 @@ import android.os.Build;
 import java.util.HashMap;
 import java.util.Map;
 
+/* --- NO LONGER USED ---
+ * Use this class to play multiple sounds using SoundPool
+ * Issue: sounds limited to 5 secs each (looping)
+ * Use MediaPlayer with SMALL low bitrate sounds instead
+ */
+
 public class SoundManager extends Activity {
 
     private SoundPool soundPool;
@@ -34,7 +40,7 @@ public class SoundManager extends Activity {
         }
     }
 
-    //WARNING: does not update the isPlaying flag
+    //WARNING: does not update the isPlaying flag (not used)
     public void playSound(int sound) {
         soundPool.play(sounds[sound], 1, 1, 1, 0, 1.0f);
     }
