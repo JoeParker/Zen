@@ -21,12 +21,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-
         //Add sounds here
-        soundMap.put((Button)findViewById(R.id.spring_birds), new SoundButton(
-                R.raw.spring_birds,
-                getResources().getDrawable(R.drawable.spring_birds_g),
-                getResources().getDrawable(R.drawable.spring_birds)));
+        soundMap.put((Button)findViewById(R.id.spring_birds), new SoundButton(  //Button ID
+                R.raw.spring_birds,                                             //Sound file
+                getResources().getDrawable(R.drawable.spring_birds_g),          //Image grey
+                getResources().getDrawable(R.drawable.spring_birds)));          //Image colour
         soundMap.put((Button)findViewById(R.id.babbling_brook), new SoundButton(
                 R.raw.babbling_brook,
                 getResources().getDrawable(R.drawable.babbling_brook_g),
@@ -71,6 +70,26 @@ public class MainActivity extends AppCompatActivity {
                 R.raw.night,
                 getResources().getDrawable(R.drawable.night_g),
                 getResources().getDrawable(R.drawable.night)));
+        soundMap.put((Button)findViewById(R.id.fireplace), new SoundButton(
+                R.raw.fireplace,
+                getResources().getDrawable(R.drawable.fireplace_g),
+                getResources().getDrawable(R.drawable.fireplace)));
+        soundMap.put((Button)findViewById(R.id.bells), new SoundButton(
+                R.raw.bells,
+                getResources().getDrawable(R.drawable.bells_g),
+                getResources().getDrawable(R.drawable.bells)));
+        soundMap.put((Button)findViewById(R.id.water_fountain), new SoundButton(
+                R.raw.water_fountain,
+                getResources().getDrawable(R.drawable.water_fountain_g),
+                getResources().getDrawable(R.drawable.water_fountain)));
+        soundMap.put((Button)findViewById(R.id.windchimes), new SoundButton(
+                R.raw.windchimes,
+                getResources().getDrawable(R.drawable.windchimes_g),
+                getResources().getDrawable(R.drawable.windchimes)));
+        soundMap.put((Button)findViewById(R.id.bonfire), new SoundButton(
+                R.raw.bonfire,
+                getResources().getDrawable(R.drawable.bonfire_g),
+                getResources().getDrawable(R.drawable.bonfire)));
 
         //Add raw sounds to array and initialise SoundPool manager
         rawSounds = new int[soundMap.size()];

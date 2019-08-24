@@ -156,5 +156,65 @@
         app:layout_constraintTop_toBottomOf="@+id/rain_umbrella"
         app:layout_constraintVertical_bias="0.0" />
 
+    <Button
+        android:id="@+id/fireplace"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/fireplace_g"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/night"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/bells"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/bells_g"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fireplace"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/water_fountain"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/water_fountain_g"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/bells"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/windchimes"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/windchimes_g"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/water_fountain"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <Button
+        android:id="@+id/bonfire"
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="@drawable/bonfire_g"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/windchimes"
+        app:layout_constraintVertical_bias="0.0" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>
