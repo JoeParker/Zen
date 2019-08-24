@@ -14,6 +14,8 @@ public class MainActivity extends AppCompatActivity {
     final Map<Button, SoundButton> soundMap = new HashMap<>();
     int[] rawSounds;
 
+    public static final int MAX_SOUNDS = 20;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,7 +79,7 @@ public class MainActivity extends AppCompatActivity {
             rawSounds[index] = sb.getRawSound();
             index++;
         }
-        final SoundManager soundManager = new SoundManager(20, rawSounds, this);
+        final SoundManager soundManager = new SoundManager(MAX_SOUNDS, rawSounds, this);
 
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
