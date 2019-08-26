@@ -1,5 +1,6 @@
 package com.joeparker.myapplication;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.media.MediaPlayer;
@@ -18,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        ActionBar menu = getSupportActionBar();
+        menu.setTitle("Ambience");
 
         //Add sounds here
         soundMap.put((Button)findViewById(R.id.spring_birds), new SoundButton(  //Button ID
