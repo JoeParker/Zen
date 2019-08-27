@@ -150,50 +150,20 @@ public class MainActivity extends AppCompatActivity {
 
     //Menu button functions
     private static void save(Map m, Context context) {
-        List<SoundButton> nowPlaying = new ArrayList<>();
-        Collection soundButtons = m.values();
-        for (Object s : soundButtons) {
-            if (s instanceof SoundButton) {
-                SoundButton sb = (SoundButton)s;
-                MediaPlayer player = sb.getPlayer();
-                if (player.isPlaying()) {
-                    nowPlaying.add(sb);
-                }
-            }
-            else {
-                System.err.println("Save error, unable to cast SoundButton object.");
-            }
-        }
-
-        Toast.makeText(context, "Saved selection", Toast.LENGTH_SHORT).show();
+        List<SoundButton> nowPlaying = Helper.getCurrentlyPlaying(m);
     }
 
     //Stop all currently playing sounds
     private static void stop(Map m, Activity context) {
-        List<SoundButton> nowPlaying = new ArrayList<>();
-        Collection soundButtons = m.values();
-        for (Object s : soundButtons) {
-            if (s instanceof SoundButton) {
-                SoundButton sb = (SoundButton)s;
-                MediaPlayer player = sb.getPlayer();
-                if (player.isPlaying()) {
-                    nowPlaying.add(sb);
-                }
-            }
-            else {
-                System.err.println("Stop error, unable to cast SoundButton object.");
-            }
-        }
+        List<SoundButton> nowPlaying = Helper.getCurrentlyPlaying(m);
         for (SoundButton sb : nowPlaying) {
-            Button button = context.findViewById(R.id.spring_birds);
             sb.getPlayer().pause();
-            Set<Map.Entry<Button, SoundButton>> entries = m.entrySet();
-            for (Map.Entry entry : entries) {
-                if (Objects.equals(sb, entry.getValue())) {
-                    button = (Button) entry.getKey();
-                }
+            try {
+                Button button = (Button) Helper.getKeyFromValue(m, sb);
+                button.setBackground(sb.getImageOff());
+            } catch (NullPointerException npe) {
+                System.err.println("Error stopping sound, no matching button was found for the sound.");
             }
-            button.setBackground(sb.getImageOff());
         }
     }
 }
