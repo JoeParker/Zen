@@ -1,16 +1,23 @@
 package com.joeparker.myapplication;
 
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.PopupMenu;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import java.lang.reflect.Array;
@@ -25,9 +32,12 @@ import java.util.Set;
 public class MainActivity extends AppCompatActivity {
 
      Menu menu;
+     View view;
 
     final Map<Button, SoundButton> soundMap = new HashMap<>();
     final List<SoundButton> currentlyPlaying = new ArrayList<>();
+
+    final Map<String, List<SoundButton>> presets = new HashMap<>();
 
     boolean paused = true;
 
@@ -35,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        this.view = findViewById(android.R.id.content);
 
         //Add sounds here
         soundMap.put((Button)findViewById(R.id.spring_birds), new SoundButton(  //Button ID
@@ -147,6 +158,7 @@ public class MainActivity extends AppCompatActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         this.menu = menu;
+
         return true;
     }
 
@@ -155,7 +167,7 @@ public class MainActivity extends AppCompatActivity {
         // Handle presses on the action bar items
         switch (item.getItemId()) {
             case R.id.save:
-                save(soundMap, this);
+                save(this, currentlyPlaying, presets);
                 return true;
             case R.id.pause:
                 if (paused) {
@@ -177,8 +189,34 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Menu button functions
-    private static void save(Map m, Context context) {
-        //List<SoundButton> nowPlaying = Helper.getCurrentlyPlaying(m);
+    private static void save(final Context context, final List<SoundButton> currentlyPlaying, final Map<String, List<SoundButton>> presets){
+        final EditText textInput = new EditText(context);
+        textInput.setHint("");
+        new AlertDialog.Builder(context, R.style.AlertTheme)
+                .setTitle("Save Preset")
+                .setMessage("Name your preset:")
+                .setView(textInput)
+                .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        String name = textInput.getText().toString();
+                        if (name.isEmpty()) {
+                            Toast.makeText(context, "Please enter a valid name", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            presets.put(name, currentlyPlaying);
+                            Toast.makeText(context, "Preset saved", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.cancel();;
+                    }
+                })
+                .show();
     }
 
     //Stop all currently playing sounds
