@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -23,18 +24,21 @@ import java.util.Set;
 
 public class MainActivity extends AppCompatActivity {
 
+     Menu menu;
+
     final Map<Button, SoundButton> soundMap = new HashMap<>();
+    final List<SoundButton> currentlyPlaying = new ArrayList<>();
+
+    boolean paused = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        ActionBar menu = getSupportActionBar();
-        menu.setTitle("Ambience");
 
         //Add sounds here
         soundMap.put((Button)findViewById(R.id.spring_birds), new SoundButton(  //Button ID
-                this, R.raw.spring_birds,                                             //Sound file
+                this, R.raw.spring_birds,                                //Sound file
                 getResources().getDrawable(R.drawable.spring_birds_g),          //Image (greyscale)
                 getResources().getDrawable(R.drawable.spring_birds)));          //Image (colour)
         soundMap.put((Button)findViewById(R.id.babbling_brook), new SoundButton(
@@ -110,11 +114,23 @@ public class MainActivity extends AppCompatActivity {
                 if (player.isPlaying()) {
                     player.pause();
                     view.setBackground(soundButton.getImageOff());
+                    currentlyPlaying.remove(soundButton);
                 }
                 else {
+                    for (SoundButton sb : soundMap.values()) {
+                        if (sb.getPlayer().isPlaying()) {
+                            paused = false;
+                            break;
+                        }
+                    }
+                    if (paused) {
+                        currentlyPlaying.clear();
+                        menu.findItem(R.id.pause).setIcon(android.R.drawable.ic_media_pause);
+                    }
                     player.start();
                     player.setLooping(true);
                     view.setBackground(soundButton.getImageOn());
+                    currentlyPlaying.add(soundButton);
                 }
 
             }
@@ -130,6 +146,7 @@ public class MainActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
+        this.menu = menu;
         return true;
     }
 
@@ -140,8 +157,19 @@ public class MainActivity extends AppCompatActivity {
             case R.id.save:
                 save(soundMap, this);
                 return true;
-            case R.id.stop:
-                stop(soundMap, this);
+            case R.id.pause:
+                if (paused) {
+                    if(!currentlyPlaying.isEmpty()) {
+                        resume(soundMap, currentlyPlaying);
+                        item.setIcon(android.R.drawable.ic_media_pause);
+                        paused = false;
+                    }
+                }
+                else {
+                    pause(soundMap, currentlyPlaying);
+                    item.setIcon(android.R.drawable.ic_media_play);
+                    paused = true;
+                }
                 return true;
             default:
                 return super.onOptionsItemSelected(item);
@@ -150,19 +178,32 @@ public class MainActivity extends AppCompatActivity {
 
     //Menu button functions
     private static void save(Map m, Context context) {
-        List<SoundButton> nowPlaying = Helper.getCurrentlyPlaying(m);
+        //List<SoundButton> nowPlaying = Helper.getCurrentlyPlaying(m);
     }
 
     //Stop all currently playing sounds
-    private static void stop(Map m, Activity context) {
-        List<SoundButton> nowPlaying = Helper.getCurrentlyPlaying(m);
-        for (SoundButton sb : nowPlaying) {
+    private static void pause(Map<Button, SoundButton> soundMap, List<SoundButton> currentlyPlaying) {
+        for (SoundButton sb : currentlyPlaying) {
             sb.getPlayer().pause();
             try {
-                Button button = (Button) Helper.getKeyFromValue(m, sb);
+                Button button = (Button) Helper.getKeyFromValue(soundMap, sb);
                 button.setBackground(sb.getImageOff());
             } catch (NullPointerException npe) {
-                System.err.println("Error stopping sound, no matching button was found for the sound.");
+                System.err.println("Error pausing sound, no matching button was found for the sound.");
+            }
+        }
+    }
+
+    //Resume most recently played sounds
+    private static void resume(Map<Button, SoundButton> soundMap, List<SoundButton> currentlyPlaying) {
+        for (SoundButton sb : currentlyPlaying) {
+            sb.getPlayer().start();
+            sb.getPlayer().setLooping(true);
+            try {
+                Button button = (Button) Helper.getKeyFromValue(soundMap, sb);
+                button.setBackground(sb.getImageOn());
+            } catch (NullPointerException npe) {
+                System.err.println("Error resuming sound, no matching button was found for the sound.");
             }
         }
     }
