@@ -1,9 +1,5 @@
 package com.joeparker.myapplication;
 
-import android.content.Context;
-import android.graphics.drawable.Drawable;
-import android.media.MediaPlayer;
-
 import java.io.IOException;
 import java.io.Serializable;
 import java.util.Objects;
@@ -13,17 +9,11 @@ public class SoundButton implements Serializable {
     private int rawSound;
     private int imageOffID;
     private int imageOnID;
- //   private Drawable imageOff;
- //   private Drawable imageOn;
- //   private MediaPlayer player;
 
-    public SoundButton(int rawSound, int imageOffID, int imageOnID) {//Context context, int rawSound, Drawable imageOff, Drawable imageOn) {
+    public SoundButton(int rawSound, int imageOffID, int imageOnID) {
         setRawSound(rawSound);
         setImageOffID(imageOffID);
         setImageOnID(imageOnID);
-   //     setImageOff(imageOff);
-   //     setImageOn(imageOn);
-   //     setPlayer(MediaPlayer.create(context, rawSound));
     }
 
     public int getRawSound() {

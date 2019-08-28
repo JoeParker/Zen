@@ -54,92 +54,91 @@ public class MainActivity extends AppCompatActivity {
 
         //Add sounds here
         soundMap.put((Button)findViewById(R.id.spring_birds), new SoundButton(  //Button ID
-                R.raw.spring_birds,                                //Sound file
-                R.drawable.spring_birds_g,          //Image (greyscale)
-                R.drawable.spring_birds));          //Image (colour)
+                R.raw.spring_birds,                                             //Sound file
+                R.drawable.spring_birds_g,                                      //Image (greyscale)
+                R.drawable.spring_birds));                                      //Image (colour)
+        soundMap.put((Button)findViewById(R.id.babbling_brook), new SoundButton(
+                R.raw.babbling_brook,
+                R.drawable.babbling_brook_g,
+                R.drawable.babbling_brook));
+        soundMap.put((Button)findViewById(R.id.thunder), new SoundButton(
+                R.raw.thunder,
+                R.drawable.thunder_g,
+                R.drawable.thunder));
+        soundMap.put((Button)findViewById(R.id.mockingbird), new SoundButton(
+                R.raw.mockingbird,
+                R.drawable.mockingbird_g,
+                R.drawable.mockingbird));
+        soundMap.put((Button)findViewById(R.id.rain), new SoundButton(
+                R.raw.rain,
+                R.drawable.rain_g,
+                R.drawable.rain));
+        soundMap.put((Button)findViewById(R.id.dog), new SoundButton(
+                R.raw.dog,
+                R.drawable.dog_g,
+                R.drawable.dog));
+        soundMap.put((Button)findViewById(R.id.beach), new SoundButton(
+                R.raw.beach,
+                R.drawable.beach_g,
+                R.drawable.beach));
+        soundMap.put((Button)findViewById(R.id.savannah), new SoundButton(
+                R.raw.savannah,
+                R.drawable.savannah_g,
+                R.drawable.savannah));
+        soundMap.put((Button)findViewById(R.id.rowing), new SoundButton(
+                R.raw.rowing,
+                R.drawable.rowing_g,
+                R.drawable.rowing));
+        soundMap.put((Button)findViewById(R.id.traffic), new SoundButton(
+                R.raw.traffic,
+                R.drawable.traffic_g,
+                R.drawable.traffic));
+        soundMap.put((Button)findViewById(R.id.rain_umbrella), new SoundButton(
+                R.raw.rain_umbrella,
+                R.drawable.rain_umbrella_g,
+                R.drawable.rain_umbrella));
+        soundMap.put((Button)findViewById(R.id.night), new SoundButton(
+                R.raw.night,
+                R.drawable.night_g,
+                R.drawable.night));
+        soundMap.put((Button)findViewById(R.id.fireplace), new SoundButton(
+                R.raw.fireplace,
+                R.drawable.fireplace_g,
+                R.drawable.fireplace));
+        soundMap.put((Button)findViewById(R.id.bells), new SoundButton(
+                R.raw.bells,
+                R.drawable.bells_g,
+                R.drawable.bells));
+        soundMap.put((Button)findViewById(R.id.water_fountain), new SoundButton(
+                R.raw.water_fountain,
+                R.drawable.water_fountain_g,
+                R.drawable.water_fountain));
+        soundMap.put((Button)findViewById(R.id.windchimes), new SoundButton(
+                R.raw.windchimes,
+                R.drawable.windchimes_g,
+                R.drawable.windchimes));
+        soundMap.put((Button)findViewById(R.id.bonfire), new SoundButton(
+                R.raw.bonfire,
+                R.drawable.bonfire_g,
+                R.drawable.bonfire));
 
         for (SoundButton sb : soundMap.values()) {
             playerMap.put(sb, MediaPlayer.create(this, sb.getRawSound()));
         }
 
-        /*      soundMap.put((Button)findViewById(R.id.babbling_brook), new SoundButton(
-                this, R.raw.babbling_brook,
-                getResources().getDrawable(R.drawable.babbling_brook_g),
-                getResources().getDrawable(R.drawable.babbling_brook)));
-        soundMap.put((Button)findViewById(R.id.thunder), new SoundButton(
-                this, R.raw.thunder,
-                getResources().getDrawable(R.drawable.thunder_g),
-                getResources().getDrawable(R.drawable.thunder)));
-        soundMap.put((Button)findViewById(R.id.mockingbird), new SoundButton(
-                this, R.raw.mockingbird,
-                getResources().getDrawable(R.drawable.mockingbird_g),
-                getResources().getDrawable(R.drawable.mockingbird)));
-        soundMap.put((Button)findViewById(R.id.rain), new SoundButton(
-                this, R.raw.rain,
-                getResources().getDrawable(R.drawable.rain_g),
-                getResources().getDrawable(R.drawable.rain)));
-        soundMap.put((Button)findViewById(R.id.dog), new SoundButton(
-                this, R.raw.dog,
-                getResources().getDrawable(R.drawable.dog_g),
-                getResources().getDrawable(R.drawable.dog)));
-        soundMap.put((Button)findViewById(R.id.beach), new SoundButton(
-                this, R.raw.beach,
-                getResources().getDrawable(R.drawable.beach_g),
-                getResources().getDrawable(R.drawable.beach)));
-        soundMap.put((Button)findViewById(R.id.savannah), new SoundButton(
-                this, R.raw.savannah,
-                getResources().getDrawable(R.drawable.savannah_g),
-                getResources().getDrawable(R.drawable.savannah)));
-        soundMap.put((Button)findViewById(R.id.rowing), new SoundButton(
-                this, R.raw.rowing,
-                getResources().getDrawable(R.drawable.rowing_g),
-                getResources().getDrawable(R.drawable.rowing)));
-        soundMap.put((Button)findViewById(R.id.traffic), new SoundButton(
-                this, R.raw.traffic,
-                getResources().getDrawable(R.drawable.traffic_g),
-                getResources().getDrawable(R.drawable.traffic)));
-        soundMap.put((Button)findViewById(R.id.rain_umbrella), new SoundButton(
-                this, R.raw.rain_umbrella,
-                getResources().getDrawable(R.drawable.rain_umbrella_g),
-                getResources().getDrawable(R.drawable.rain_umbrella)));
-        soundMap.put((Button)findViewById(R.id.night), new SoundButton(
-                this, R.raw.night,
-                getResources().getDrawable(R.drawable.night_g),
-                getResources().getDrawable(R.drawable.night)));
-        soundMap.put((Button)findViewById(R.id.fireplace), new SoundButton(
-                this, R.raw.fireplace,
-                getResources().getDrawable(R.drawable.fireplace_g),
-                getResources().getDrawable(R.drawable.fireplace)));
-        soundMap.put((Button)findViewById(R.id.bells), new SoundButton(
-                this, R.raw.bells,
-                getResources().getDrawable(R.drawable.bells_g),
-                getResources().getDrawable(R.drawable.bells)));
-        soundMap.put((Button)findViewById(R.id.water_fountain), new SoundButton(
-                this, R.raw.water_fountain,
-                getResources().getDrawable(R.drawable.water_fountain_g),
-                getResources().getDrawable(R.drawable.water_fountain)));
-        soundMap.put((Button)findViewById(R.id.windchimes), new SoundButton(
-                this, R.raw.windchimes,
-                getResources().getDrawable(R.drawable.windchimes_g),
-                getResources().getDrawable(R.drawable.windchimes)));
-        soundMap.put((Button)findViewById(R.id.bonfire), new SoundButton(
-                this, R.raw.bonfire,
-                getResources().getDrawable(R.drawable.bonfire_g),
-                getResources().getDrawable(R.drawable.bonfire)));
-*/
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 SoundButton soundButton = soundMap.get(view); //get the sound button clicked
-                MediaPlayer player = soundButton.getPlayer();
+                MediaPlayer player = playerMap.get(soundButton);
                 if (player.isPlaying()) {
                     player.pause();
-                    view.setBackground(soundButton.getImageOff());
+                    view.setBackground(getResources().getDrawable(soundButton.getImageOffID()));
                     currentlyPlaying.remove(soundButton);
                 }
                 else {
                     for (SoundButton sb : soundMap.values()) {
-                        if (sb.getPlayer().isPlaying()) {
+                        if (playerMap.get(sb).isPlaying()) {
                             paused = false;
                             break;
                         }
@@ -150,7 +149,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                     player.start();
                     player.setLooping(true);
-                    view.setBackground(soundButton.getImageOn());
+                    view.setBackground(getResources().getDrawable(soundButton.getImageOnID()));
                     currentlyPlaying.add(soundButton);
                 }
 
@@ -182,13 +181,13 @@ public class MainActivity extends AppCompatActivity {
             case R.id.pause:
                 if (paused) {
                     if(!currentlyPlaying.isEmpty()) {
-                        resume(soundMap, currentlyPlaying);
+                        resume(this, playerMap, soundMap, currentlyPlaying);
                         item.setIcon(android.R.drawable.ic_media_pause);
                         paused = false;
                     }
                 }
                 else {
-                    pause(soundMap, currentlyPlaying);
+                    pause(this, playerMap, soundMap, currentlyPlaying);
                     item.setIcon(android.R.drawable.ic_media_play);
                     paused = true;
                 }
@@ -198,13 +197,12 @@ public class MainActivity extends AppCompatActivity {
                     Map<String, List<SoundButton>> storedPresets = (Map<String, List<SoundButton>>)Helper.readObject(this, "Presets");
                     Set<String> names = storedPresets.keySet();
 
-                    CharSequence name1 = names.iterator().next();
-                    System.out.println("Playing preset: " + name1);
 
-                    //Test load preset
+                    //Test load preset in slot 1
+                    CharSequence name1 = names.iterator().next();
+                    Toast.makeText(this, "Playing preset: " + name1, Toast.LENGTH_SHORT).show();
                     List<SoundButton> preset1 = storedPresets.get(name1);
-                    System.out.println(preset1.get(0).getPlayer() == null);
-                    resume(soundMap, preset1);
+                    resume(this, playerMap, soundMap, preset1);
 
                 } catch (IOException e) {
                     e.printStackTrace();
@@ -264,12 +262,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Stop all currently playing sounds
-    private static void pause(Map<Button, SoundButton> soundMap, List<SoundButton> currentlyPlaying) {
+    private static void pause(Context context, Map<SoundButton, MediaPlayer> playerMap, Map<Button, SoundButton> soundMap, List<SoundButton> currentlyPlaying) {
         for (SoundButton sb : currentlyPlaying) {
-            sb.getPlayer().pause();
+            playerMap.get(sb).pause();
             try {
                 Button button = (Button) Helper.getKeyFromValue(soundMap, sb);
-                button.setBackground(sb.getImageOff());
+                button.setBackground(context.getResources().getDrawable(sb.getImageOffID()));
             } catch (NullPointerException npe) {
                 System.err.println("Error pausing sound, no matching button was found for the sound.");
             }
@@ -277,13 +275,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     //Resume most recently played sounds
-    private static void resume(Map<Button, SoundButton> soundMap, List<SoundButton> currentlyPlaying) {
+    private static void resume(Context context, Map<SoundButton, MediaPlayer> playerMap, Map<Button, SoundButton> soundMap, List<SoundButton> currentlyPlaying) {
         for (SoundButton sb : currentlyPlaying) {
-            sb.getPlayer().start();
-            sb.getPlayer().setLooping(true);
+            playerMap.get(sb).start();
+            playerMap.get(sb).setLooping(true);
             try {
                 Button button = (Button) Helper.getKeyFromValue(soundMap, sb);
-                button.setBackground(sb.getImageOn());
+                button.setBackground(context.getResources().getDrawable(sb.getImageOnID()));
             } catch (NullPointerException npe) {
                 System.err.println("Error resuming sound, no matching button was found for the sound.");
             }
