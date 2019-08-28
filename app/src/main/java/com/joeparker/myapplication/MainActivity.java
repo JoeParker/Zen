@@ -135,6 +135,9 @@ public class MainActivity extends AppCompatActivity {
                     player.pause();
                     view.setBackground(getResources().getDrawable(soundButton.getImageOffID()));
                     currentlyPlaying.remove(soundButton);
+                    if (currentlyPlaying.isEmpty()) {
+                        menu.findItem(R.id.pause).setIcon(R.mipmap.ic_launcher_round);
+                    }
                 }
                 else {
                     for (SoundButton sb : soundMap.values()) {
@@ -197,12 +200,18 @@ public class MainActivity extends AppCompatActivity {
                     Map<String, List<SoundButton>> storedPresets = (Map<String, List<SoundButton>>)Helper.readObject(this, "Presets");
                     Set<String> names = storedPresets.keySet();
 
-
                     //Test load preset in slot 1
                     CharSequence name1 = names.iterator().next();
                     Toast.makeText(this, "Playing preset: " + name1, Toast.LENGTH_SHORT).show();
                     List<SoundButton> preset1 = storedPresets.get(name1);
+
+                    //Begin playback
+                    pause(this, playerMap, soundMap, currentlyPlaying);
+                    currentlyPlaying.clear();
                     resume(this, playerMap, soundMap, preset1);
+                    currentlyPlaying.addAll(preset1);
+                    menu.findItem(R.id.pause).setIcon(android.R.drawable.ic_media_pause);
+                    paused = false;
 
                 } catch (IOException e) {
                     e.printStackTrace();
