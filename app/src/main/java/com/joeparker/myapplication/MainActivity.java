@@ -191,14 +191,39 @@ public class MainActivity extends AppCompatActivity {
     //Menu button functions
     private static void save(final Context context, final List<SoundButton> currentlyPlaying, final Map<String, List<SoundButton>> presets){
         final EditText textInput = new EditText(context);
-        textInput.setHint("");
-        new AlertDialog.Builder(context, R.style.AlertTheme)
+        textInput.setHint("Please enter a valid name");
+        final AlertDialog dialog = new AlertDialog.Builder(context, R.style.AlertTheme)
                 .setTitle("Save Preset")
                 .setMessage("Name your preset:")
                 .setView(textInput)
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
-                    @Override
+                    @Override //Confirm button clicked
                     public void onClick(DialogInterface dialog, int whichButton) {
+                   /*     String name = textInput.getText().toString();
+                        if (name.isEmpty()) {
+                            Toast.makeText(context, "Please enter a valid name", Toast.LENGTH_SHORT).show();
+                        }
+                        else {
+                            presets.put(name, currentlyPlaying);
+                            Toast.makeText(context, "Preset saved", Toast.LENGTH_SHORT).show();
+                            dialog.dismiss();
+                        }*/
+                    }
+                })
+                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
+                    @Override //Cancel button clicked
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        dialog.cancel();;
+                    }
+                })
+                .show();
+
+                dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        //Boolean valid = false;
+
                         String name = textInput.getText().toString();
                         if (name.isEmpty()) {
                             Toast.makeText(context, "Please enter a valid name", Toast.LENGTH_SHORT).show();
@@ -208,15 +233,10 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(context, "Preset saved", Toast.LENGTH_SHORT).show();
                             dialog.dismiss();
                         }
+                        //else dialog stays open. Make sure you have an obvious way to close the dialog especially if you set cancellable to false.
                     }
-                })
-                .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int whichButton) {
-                        dialog.cancel();;
-                    }
-                })
-                .show();
+                });
+
     }
 
     //Stop all currently playing sounds
