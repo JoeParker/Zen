@@ -10,6 +10,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -20,6 +21,8 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Collection;
@@ -35,6 +38,8 @@ public class MainActivity extends AppCompatActivity {
      View view;
 
     final Map<Button, SoundButton> soundMap = new HashMap<>();
+    final Map<SoundButton, MediaPlayer> playerMap = new HashMap<>();
+
     final List<SoundButton> currentlyPlaying = new ArrayList<>();
 
     final Map<String, List<SoundButton>> presets = new HashMap<>();
@@ -49,10 +54,15 @@ public class MainActivity extends AppCompatActivity {
 
         //Add sounds here
         soundMap.put((Button)findViewById(R.id.spring_birds), new SoundButton(  //Button ID
-                this, R.raw.spring_birds,                                //Sound file
-                getResources().getDrawable(R.drawable.spring_birds_g),          //Image (greyscale)
-                getResources().getDrawable(R.drawable.spring_birds)));          //Image (colour)
-        soundMap.put((Button)findViewById(R.id.babbling_brook), new SoundButton(
+                R.raw.spring_birds,                                //Sound file
+                R.drawable.spring_birds_g,          //Image (greyscale)
+                R.drawable.spring_birds));          //Image (colour)
+
+        for (SoundButton sb : soundMap.values()) {
+            playerMap.put(sb, MediaPlayer.create(this, sb.getRawSound()));
+        }
+
+        /*      soundMap.put((Button)findViewById(R.id.babbling_brook), new SoundButton(
                 this, R.raw.babbling_brook,
                 getResources().getDrawable(R.drawable.babbling_brook_g),
                 getResources().getDrawable(R.drawable.babbling_brook)));
@@ -116,7 +126,7 @@ public class MainActivity extends AppCompatActivity {
                 this, R.raw.bonfire,
                 getResources().getDrawable(R.drawable.bonfire_g),
                 getResources().getDrawable(R.drawable.bonfire)));
-
+*/
         View.OnClickListener listener = new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -183,6 +193,25 @@ public class MainActivity extends AppCompatActivity {
                     paused = true;
                 }
                 return true;
+            case R.id.presets:
+                try {
+                    Map<String, List<SoundButton>> storedPresets = (Map<String, List<SoundButton>>)Helper.readObject(this, "Presets");
+                    Set<String> names = storedPresets.keySet();
+
+                    CharSequence name1 = names.iterator().next();
+                    System.out.println("Playing preset: " + name1);
+
+                    //Test load preset
+                    List<SoundButton> preset1 = storedPresets.get(name1);
+                    System.out.println(preset1.get(0).getPlayer() == null);
+                    resume(soundMap, preset1);
+
+                } catch (IOException e) {
+                    e.printStackTrace();
+                } catch (ClassNotFoundException e) {
+                    e.printStackTrace();
+                }
+
             default:
                 return super.onOptionsItemSelected(item);
         }
@@ -199,15 +228,7 @@ public class MainActivity extends AppCompatActivity {
                 .setPositiveButton(android.R.string.ok, new DialogInterface.OnClickListener() {
                     @Override //Confirm button clicked
                     public void onClick(DialogInterface dialog, int whichButton) {
-                   /*     String name = textInput.getText().toString();
-                        if (name.isEmpty()) {
-                            Toast.makeText(context, "Please enter a valid name", Toast.LENGTH_SHORT).show();
-                        }
-                        else {
-                            presets.put(name, currentlyPlaying);
-                            Toast.makeText(context, "Preset saved", Toast.LENGTH_SHORT).show();
-                            dialog.dismiss();
-                        }*/
+                        //Do nothing here as we need to handle validation below
                     }
                 })
                 .setNegativeButton(android.R.string.cancel, new DialogInterface.OnClickListener() {
@@ -219,21 +240,24 @@ public class MainActivity extends AppCompatActivity {
                 .show();
 
                 dialog.getButton(AlertDialog.BUTTON_POSITIVE).setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v)
-                    {
-                        //Boolean valid = false;
-
+                    @Override //Handle input validation
+                    public void onClick(View v) {
                         String name = textInput.getText().toString();
                         if (name.isEmpty()) {
                             Toast.makeText(context, "Please enter a valid name", Toast.LENGTH_SHORT).show();
                         }
                         else {
-                            presets.put(name, currentlyPlaying);
-                            Toast.makeText(context, "Preset saved", Toast.LENGTH_SHORT).show();
+                            //Save preset to internal storage
+                            try {
+                                presets.put(name, currentlyPlaying);
+                                Helper.writeObject(context, "Presets", presets);
+                                Toast.makeText(context, "Preset saved", Toast.LENGTH_SHORT).show();
+                            } catch (IOException e) {
+                                Toast.makeText(context, "Error saving preset: There may not be enough space on your device.", Toast.LENGTH_SHORT).show();
+                                e.printStackTrace();
+                            }
                             dialog.dismiss();
                         }
-                        //else dialog stays open. Make sure you have an obvious way to close the dialog especially if you set cancellable to false.
                     }
                 });
 
