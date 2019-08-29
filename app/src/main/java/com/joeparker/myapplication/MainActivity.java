@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
     final Map<String, List<SoundButton>> presets = new HashMap<>();
 
     boolean paused = true;
+    boolean waiting = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -136,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                     view.setBackground(getResources().getDrawable(soundButton.getImageOffID()));
                     currentlyPlaying.remove(soundButton);
                     if (currentlyPlaying.isEmpty()) {
+                        waiting = true;
                         menu.findItem(R.id.pause).setIcon(R.mipmap.ic_launcher_round);
                     }
                 }
@@ -148,12 +150,14 @@ public class MainActivity extends AppCompatActivity {
                     }
                     if (paused) {
                         currentlyPlaying.clear();
-                        menu.findItem(R.id.pause).setIcon(android.R.drawable.ic_media_pause);
                     }
                     player.start();
                     player.setLooping(true);
                     view.setBackground(getResources().getDrawable(soundButton.getImageOnID()));
+                    menu.findItem(R.id.pause).setIcon(android.R.drawable.ic_media_pause);
                     currentlyPlaying.add(soundButton);
+                    paused = false;
+                    waiting = false;
                 }
 
             }
@@ -182,7 +186,11 @@ public class MainActivity extends AppCompatActivity {
                 save(this, currentlyPlaying, presets);
                 return true;
             case R.id.pause:
-                if (paused) {
+                if (waiting) {
+                    System.out.println("Ready to begin playback - no sounds in memory.");
+                    return true;
+                }
+                else if (paused) {
                     if(!currentlyPlaying.isEmpty()) {
                         resume(this, playerMap, soundMap, currentlyPlaying);
                         item.setIcon(android.R.drawable.ic_media_pause);
