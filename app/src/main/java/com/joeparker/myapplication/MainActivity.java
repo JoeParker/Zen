@@ -220,8 +220,10 @@ public class MainActivity extends AppCompatActivity {
                     currentlyPlaying.addAll(preset1);
                     menu.findItem(R.id.pause).setIcon(android.R.drawable.ic_media_pause);
                     paused = false;
+                    waiting = false;
 
                 } catch (IOException e) {
+                    Toast.makeText(this, "No saved presets found on device", Toast.LENGTH_SHORT).show();
                     e.printStackTrace();
                 } catch (ClassNotFoundException e) {
                     e.printStackTrace();
